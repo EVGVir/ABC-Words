@@ -1,0 +1,32 @@
+body {
+    display: grid;
+    grid-template-columns: 4em auto 4em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+#back {
+    font-size: 3em;
+    align-self: center;
+}
+
+
+#fwd {
+    font-size: 3em;
+    align-self: center;
+}
+
+
+#board {
+    align-self: center;
+}
+
+
+#word {
+    font-size: 8em;
+    font-family: sans;
+}

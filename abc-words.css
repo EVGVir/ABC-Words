@@ -9,15 +9,10 @@ body {
 }
 
 
-#back {
+#back, #fwd {
     font-size: 3em;
     align-self: center;
-}
-
-
-#fwd {
-    font-size: 3em;
-    align-self: center;
+    cursor: pointer;
 }
 
 

@@ -1,6 +1,7 @@
 import {WORDS} from './words.js';
 
 var history = [];
+var historyIx = -1;
 
 
 function init() {
@@ -11,36 +12,43 @@ function init() {
 }
 
 
-function prevWordIx() {
-    if (history.length == 0) return null;
-    return history[history.length - 1];
-}
-
-
 function setWord(index) {
     document.getElementById('word').innerHTML = WORDS[index];
 }
 
 
+function getNewWordIx() {
+    var result = 0;
+    do {
+        result = Math.floor(Math.random() * Math.floor(WORDS.length));
+    } while (
+        history.length != 0 &&            // There is no history before the first letter generation.
+        result == history[historyIx]
+    );
+
+    return result;
+}
+
+
 function onBack() {
-    history.pop();
+    if (historyIx == 0) return;
 
-    if (history.length == 0) return;
-
-    setWord(prevWordIx());
+    historyIx--;
+    setWord(history[historyIx]);
 }
 
 
 function onFwd() {
-    const max = WORDS.length;
+    if (historyIx < history.length - 1) {
+        historyIx++;
+        setWord(history[historyIx]);
+        return;
+    }
 
-    var wordIx = 0;
-    do {
-        wordIx = Math.floor(Math.random() * Math.floor(max));
-    } while (wordIx == prevWordIx());
-
-    setWord(wordIx);
-    history.push(wordIx);
+    var newWordIx = getNewWordIx();
+    setWord(newWordIx);
+    history.push(newWordIx);
+    historyIx++;
 }
 
 
